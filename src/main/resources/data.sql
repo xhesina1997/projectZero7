@@ -14,3 +14,4 @@ INSERT INTO product VALUES (13, 'tt', 'ddd', 6600.0, 'hm', 's','this is a descri
 INSERT INTO product VALUES (14, 'tt', 'ddd', 330.0, 'hm', 's','this is a description');
 INSERT INTO product VALUES (15, 'tt', 'ddd', 890.0, 'hm', 's','this is a description');
 INSERT INTO product VALUES (16, 'tt', 'ddd', 210.0, 'hm', 's','this is a description');
+INSERT INTO user VALUES (12,'Tirana','xhesina','xhesina','xhesina','xhesina')

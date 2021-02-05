@@ -1,37 +1,38 @@
 package com.example.demo.entity;
 
+
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
+
 
 @Entity
 @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
-@Data
-public class Product {
+@Getter
+@Setter
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String username;
 
     @Column(nullable = false)
-    private Double price;
+    private String name;
 
     @Column(nullable = false)
-    private String brand;
+    private String address;
 
     @Column(nullable = false)
-    private String size;
+    private String password;
 
-    @Column(nullable = false)
-    private String productColor;
+    private String passwordConfirm;
 
-    @Column(nullable = false)
-    private String description;
 
 
 }
