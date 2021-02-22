@@ -1,9 +1,11 @@
 package com.example.demo.domainModel;
 
 import com.example.demo.entity.Product;
+import com.example.demo.enums.Category;
 import lombok.Data;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,14 @@ public class ProductDTO {
 
     private String description;
 
+    private Long userID;
+
+    private Category category;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime createdAt;
+
     public static ProductDTO toDTO(Product product){
         ProductDTO productDTO = new ProductDTO();
         productDTO.setId(product.getId());
@@ -33,6 +43,10 @@ public class ProductDTO {
         productDTO.setDescription(product.getDescription());
         productDTO.setTitle(product.getTitle());
         productDTO.setSize(product.getSize());
+        productDTO.setCreatedAt(product.getCreatedAt());
+        productDTO.setUpdatedAt(product.getUpdatedAt());
+        productDTO.setCategory(product.getCategory());
+        productDTO.setUserID(product.getUserID());
         return productDTO;
     }
     public static List<ProductDTO> toDTOs(List<Product> products){

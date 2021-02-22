@@ -4,6 +4,10 @@ import com.example.demo.domainModel.ProductDTO;
 import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +23,15 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductDTO> getAllProducts(){
-        List<Product> products = productRepository.findAll();
-        return ProductDTO.toDTOs(products);
+    public Page<Product> getAllProducts(int pageNr, int pageSize){
+        Pageable pageable = PageRequest.of(pageNr-1,pageSize);
+        return productRepository.findAll(pageable);
+
     }
 
+    public List<Product> getAllProductsNotPaged(){
+        return productRepository.findAll();
+    }
     public ProductDTO getProductById(Long productId){
         Optional<Product> product = productRepository.findById(productId);
         return product.map(ProductDTO::toDTO).orElse(null);
@@ -39,5 +47,10 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(productId);
         productRepository.delete(product.get());
         return "Product deleted successfully!";
+    }
+
+    public List<ProductDTO> orderByCreatedDate(){
+        List<Product> products =  productRepository.findByOrderByCreatedAtDesc();
+        return ProductDTO.toDTOs(products);
     }
 }

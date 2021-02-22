@@ -1,7 +1,6 @@
 package com.example.demo.domainModel;
 
-import com.example.demo.entity.Product;
-import com.example.demo.entity.User;
+import com.example.demo.entity.UserData;
 import lombok.Data;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserDTO {
 
     private String address;
 
-    public static UserDTO toDTO(User user){
+    public static UserDTO toDTO(UserData user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
@@ -27,7 +26,7 @@ public class UserDTO {
         userDTO.setName(user.getName());
         return userDTO;
     }
-    public static List<UserDTO> toDTOs(List<User> users){
+    public static List<UserDTO> toDTOs(List<UserData> users){
         return users.stream().map(UserDTO::toDTO).collect(Collectors.toList());
     }
 
