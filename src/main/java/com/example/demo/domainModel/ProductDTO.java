@@ -1,7 +1,6 @@
 package com.example.demo.domainModel;
 
 import com.example.demo.entity.Product;
-import com.example.demo.enums.Category;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -28,8 +27,6 @@ public class ProductDTO {
 
     private Long userID;
 
-    private Category category;
-
     private LocalDateTime updatedAt;
 
     private LocalDateTime createdAt;
@@ -45,7 +42,6 @@ public class ProductDTO {
         productDTO.setSize(product.getSize());
         productDTO.setCreatedAt(product.getCreatedAt());
         productDTO.setUpdatedAt(product.getUpdatedAt());
-        productDTO.setCategory(product.getCategory());
         productDTO.setUserID(product.getUserID());
         return productDTO;
     }

@@ -3,9 +3,7 @@ package com.example.demo.entity;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,8 +11,7 @@ import java.util.List;
 @Entity
 @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 @Data
-public class Product {
-
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
     private Long id;
@@ -27,25 +24,14 @@ public class Product {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(name = "name")
+    private String name;
 
-    @Column(nullable = false)
-    private Double price;
+    @OneToOne
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
+    private Category category;
 
-    @Column(nullable = false)
-    private String brand;
-
-    @Column(nullable = false)
-    private String size;
-
-    @Column(nullable = false)
-    private String productColor;
-
-    @Column(nullable = false)
-    private String description;
-
-    @Column
-    private Long userID;
-
+    @OneToMany
+    @JoinColumn(name="category_id",referencedColumnName = "id")
+    private List<Product> products;
 }

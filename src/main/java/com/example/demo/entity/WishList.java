@@ -1,16 +1,30 @@
 package com.example.demo.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class WishList {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq")
-    private Long id;
+
+    @EmbeddedId
+    private WishListCompositeKey compositeKey;
+
+    @ManyToOne
+    @MapsId("productId")
+    private Product product;
+
+    @ManyToOne
+    @MapsId("userId")
+    private UserData userData;
+
+    public WishList(Product product, UserData userData) {
+        this.product = product;
+        this.userData = userData;
+        this.compositeKey = new WishListCompositeKey(product.getId(), userData.getId());
+    }
+
 }
