@@ -27,11 +27,13 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    private Category category;
-
-    @OneToMany
-    @JoinColumn(name="category_id",referencedColumnName = "id")
-    private List<Product> products;
+    @Column(name="parent_id")
+    private Long parentId;
+//    @OneToOne
+//    @JoinColumn(name = "parent_id", referencedColumnName = "id")
+//    private Category category;
+//
+//    @OneToMany
+//    @JoinColumn(name="category_id",referencedColumnName = "id")
+//    private List<Product> products;
 }

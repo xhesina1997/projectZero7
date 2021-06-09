@@ -47,5 +47,6 @@ public class Product {
 
     @Column
     private Long userID;
-
+    @Column
+    private Long categoryId;
 }

@@ -48,14 +48,15 @@ public class ProductController {
 
 
     @RequestMapping(method=RequestMethod.POST)
-    public String createProduct(@RequestBody Product product){
+    public void createProduct(@RequestBody Product product){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long userId = userService.getUserByUsername(userDetails.getUsername()).get().getId();
         UserData userData = new UserData();
         userData.setId(userId);
         product.setUserID(userId);
-       return productService.createProduct(product);
+        productService.createProduct(product);
+
     }
 
     @RequestMapping(value = "/delete/{productId}",method=RequestMethod.DELETE)
